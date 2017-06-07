@@ -1,0 +1,35 @@
+// ScannerApp.idl : IDL source for ScannerApp
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ScannerApp.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(D1382FE6-5650-4DBD-A036-5A8B1443A193),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IScanner : IDispatch{
+	[id(1), helpstring("Scan Method")] HRESULT Scan();
+};
+[
+	uuid(5AE5AC7F-8DB4-4BA6-B84A-888BABD8653F),
+	version(1.0),
+]
+library ScannerAppLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(1696978A-B108-47E6-A905-677A66BDBB9B)		
+	]
+	coclass Scanner
+	{
+		[default] interface IScanner;
+	};
+};
+

@@ -1,0 +1,63 @@
+﻿// Created by Microsoft (R) C/C++ Compiler Version 14.00.24215.1 (739b40c9).
+//
+// d:\dev\comodo\test\clientapp\debug\scannerapp.tlh
+//
+// C++ source equivalent of Win32 type library d:\dev\Comodo\Test\Debug\ScannerApp.dll
+// compiler-generated file created 06/07/17 at 07:56:19 - DO NOT EDIT!
+
+#pragma once
+#pragma pack(push, 8)
+
+#include <comdef.h>
+
+namespace COM {
+
+//
+// Forward references and typedefs
+//
+
+struct __declspec(uuid("5ae5ac7f-8db4-4ba6-b84a-888babd8653f"))
+/* LIBID */ __ScannerAppLib;
+struct /* coclass */ Scanner;
+struct __declspec(uuid("d1382fe6-5650-4dbd-a036-5a8b1443a193"))
+/* dual interface */ IScanner;
+
+//
+// Smart pointer typedef declarations
+//
+
+_COM_SMARTPTR_TYPEDEF(IScanner, __uuidof(IScanner));
+
+//
+// Type library items
+//
+
+struct __declspec(uuid("1696978a-b108-47e6-a905-677a66bdbb9b"))
+Scanner;
+    // [ default ] interface IScanner
+
+struct __declspec(uuid("d1382fe6-5650-4dbd-a036-5a8b1443a193"))
+IScanner : IDispatch
+{
+    //
+    // Wrapper methods for error-handling
+    //
+
+    HRESULT Scan ( );
+
+    //
+    // Raw methods provided by interface
+    //
+
+      virtual HRESULT __stdcall raw_Scan ( ) = 0;
+};
+
+//
+// Wrapper method implementations
+//
+
+#include "d:\dev\comodo\test\clientapp\debug\scannerapp.tli"
+
+} // namespace COM
+
+#pragma pack(pop)

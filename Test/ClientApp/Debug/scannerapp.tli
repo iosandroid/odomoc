@@ -1,0 +1,18 @@
+﻿// Created by Microsoft (R) C/C++ Compiler Version 14.00.24215.1 (739b40c9).
+//
+// d:\dev\comodo\test\clientapp\debug\scannerapp.tli
+//
+// Wrapper implementations for Win32 type library d:\dev\Comodo\Test\Debug\ScannerApp.dll
+// compiler-generated file created 06/07/17 at 07:56:19 - DO NOT EDIT!
+
+#pragma once
+
+//
+// interface IScanner wrapper method implementations
+//
+
+inline HRESULT IScanner::Scan ( ) {
+    HRESULT _hr = raw_Scan();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
