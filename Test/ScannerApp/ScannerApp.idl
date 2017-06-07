@@ -16,6 +16,7 @@ import "ocidl.idl";
 ]
 interface IScanner : IDispatch{
 	[id(1), helpstring("Scan Method")] HRESULT Scan();
+	[id(2), helpstring("Method Scan Path")] HRESULT ScanPath(BSTR path);
 };
 [
 	uuid(5AE5AC7F-8DB4-4BA6-B84A-888BABD8653F),

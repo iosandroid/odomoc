@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Wed Jun 07 07:47:32 2017
+/* at Wed Jun 07 13:31:46 2017
  */
 /* Compiler settings for ScannerApp.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
@@ -90,6 +90,9 @@ EXTERN_C const IID IID_IScanner;
     public:
         virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE Scan( void) = 0;
         
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE ScanPath( 
+            BSTR path) = 0;
+        
     };
     
     
@@ -151,6 +154,10 @@ EXTERN_C const IID IID_IScanner;
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *Scan )( 
             IScanner * This);
         
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *ScanPath )( 
+            IScanner * This,
+            BSTR path);
+        
         END_INTERFACE
     } IScannerVtbl;
 
@@ -190,6 +197,9 @@ EXTERN_C const IID IID_IScanner;
 #define IScanner_Scan(This)	\
     ( (This)->lpVtbl -> Scan(This) ) 
 
+#define IScanner_ScanPath(This,path)	\
+    ( (This)->lpVtbl -> ScanPath(This,path) ) 
+
 #endif /* COBJMACROS */
 
 
@@ -221,6 +231,11 @@ Scanner;
 #endif /* __ScannerAppLib_LIBRARY_DEFINED__ */
 
 /* Additional Prototypes for ALL interfaces */
+
+unsigned long             __RPC_USER  BSTR_UserSize(     unsigned long *, unsigned long            , BSTR * ); 
+unsigned char * __RPC_USER  BSTR_UserMarshal(  unsigned long *, unsigned char *, BSTR * ); 
+unsigned char * __RPC_USER  BSTR_UserUnmarshal(unsigned long *, unsigned char *, BSTR * ); 
+void                      __RPC_USER  BSTR_UserFree(     unsigned long *, BSTR * ); 
 
 /* end of Additional Prototypes */
 

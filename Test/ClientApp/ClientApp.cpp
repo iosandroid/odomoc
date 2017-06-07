@@ -3,17 +3,16 @@
 
 #include "stdafx.h"
 
-#import "d:\dev\Comodo\Test\Debug\ScannerApp.dll" rename_namespace("COM")
+#import "..\Debug\ScannerApp.dll" rename_namespace("COM")
 
 int main()
 {
 	::CoInitialize(NULL);
 
 	COM::IScannerPtr scanner(__uuidof(COM::Scanner));
-	scanner->Scan();
+	scanner->ScanPath(L"d:\\dev\\wowp\\wowp_ws0\\game\\bigworld\\build_client_vc120_win32\\client_win32.sdf");
 	
 	::CoUninitialize();
-
     return 0;
 }
 

@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Wed Jun 07 07:47:32 2017
+/* at Wed Jun 07 13:31:46 2017
  */
 /* Compiler settings for ScannerApp.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
@@ -49,11 +49,11 @@
 
 #include "ScannerApp_i.h"
 
-#define TYPE_FORMAT_STRING_SIZE   3                                 
-#define PROC_FORMAT_STRING_SIZE   31                                
+#define TYPE_FORMAT_STRING_SIZE   39                                
+#define PROC_FORMAT_STRING_SIZE   67                                
 #define EXPR_FORMAT_STRING_SIZE   1                                 
 #define TRANSMIT_AS_TABLE_SIZE    0            
-#define WIRE_MARSHAL_TABLE_SIZE   0            
+#define WIRE_MARSHAL_TABLE_SIZE   1            
 
 typedef struct _ScannerApp_MIDL_TYPE_FORMAT_STRING
     {
@@ -90,6 +90,7 @@ extern const MIDL_SERVER_INFO IScanner_ServerInfo;
 extern const MIDL_STUBLESS_PROXY_INFO IScanner_ProxyInfo;
 
 
+extern const USER_MARSHAL_ROUTINE_QUADRUPLE UserMarshalRoutines[ WIRE_MARSHAL_TABLE_SIZE ];
 
 #if !defined(__RPC_WIN32__)
 #error  Invalid build platform for this stub.
@@ -132,6 +133,36 @@ static const ScannerApp_MIDL_PROC_FORMAT_STRING ScannerApp__MIDL_ProcFormatStrin
 /* 28 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
+	/* Procedure ScanPath */
+
+/* 30 */	0x33,		/* FC_AUTO_HANDLE */
+			0x6c,		/* Old Flags:  object, Oi2 */
+/* 32 */	NdrFcLong( 0x0 ),	/* 0 */
+/* 36 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 38 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
+/* 40 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 42 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 44 */	0x46,		/* Oi2 Flags:  clt must size, has return, has ext, */
+			0x2,		/* 2 */
+/* 46 */	0x8,		/* 8 */
+			0x5,		/* Ext Flags:  new corr desc, srv corr check, */
+/* 48 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 50 */	NdrFcShort( 0x1 ),	/* 1 */
+/* 52 */	NdrFcShort( 0x0 ),	/* 0 */
+
+	/* Parameter path */
+
+/* 54 */	NdrFcShort( 0x8b ),	/* Flags:  must size, must free, in, by val, */
+/* 56 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
+/* 58 */	NdrFcShort( 0x1c ),	/* Type Offset=28 */
+
+	/* Return value */
+
+/* 60 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 62 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
+/* 64 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
 			0x0
         }
     };
@@ -141,10 +172,51 @@ static const ScannerApp_MIDL_TYPE_FORMAT_STRING ScannerApp__MIDL_TypeFormatStrin
         0,
         {
 			NdrFcShort( 0x0 ),	/* 0 */
+/*  2 */	
+			0x12, 0x0,	/* FC_UP */
+/*  4 */	NdrFcShort( 0xe ),	/* Offset= 14 (18) */
+/*  6 */	
+			0x1b,		/* FC_CARRAY */
+			0x1,		/* 1 */
+/*  8 */	NdrFcShort( 0x2 ),	/* 2 */
+/* 10 */	0x9,		/* Corr desc: FC_ULONG */
+			0x0,		/*  */
+/* 12 */	NdrFcShort( 0xfffc ),	/* -4 */
+/* 14 */	NdrFcShort( 0x1 ),	/* Corr flags:  early, */
+/* 16 */	0x6,		/* FC_SHORT */
+			0x5b,		/* FC_END */
+/* 18 */	
+			0x17,		/* FC_CSTRUCT */
+			0x3,		/* 3 */
+/* 20 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 22 */	NdrFcShort( 0xfff0 ),	/* Offset= -16 (6) */
+/* 24 */	0x8,		/* FC_LONG */
+			0x8,		/* FC_LONG */
+/* 26 */	0x5c,		/* FC_PAD */
+			0x5b,		/* FC_END */
+/* 28 */	0xb4,		/* FC_USER_MARSHAL */
+			0x83,		/* 131 */
+/* 30 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 32 */	NdrFcShort( 0x4 ),	/* 4 */
+/* 34 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 36 */	NdrFcShort( 0xffde ),	/* Offset= -34 (2) */
 
 			0x0
         }
     };
+
+static const USER_MARSHAL_ROUTINE_QUADRUPLE UserMarshalRoutines[ WIRE_MARSHAL_TABLE_SIZE ] = 
+        {
+            
+            {
+            BSTR_UserSize
+            ,BSTR_UserMarshal
+            ,BSTR_UserUnmarshal
+            ,BSTR_UserFree
+            }
+
+        };
+
 
 
 /* Object interface: IUnknown, ver. 0.0,
@@ -165,7 +237,8 @@ static const unsigned short IScanner_FormatStringOffsetTable[] =
     (unsigned short) -1,
     (unsigned short) -1,
     (unsigned short) -1,
-    0
+    0,
+    30
     };
 
 static const MIDL_STUBLESS_PROXY_INFO IScanner_ProxyInfo =
@@ -189,7 +262,7 @@ static const MIDL_SERVER_INFO IScanner_ServerInfo =
     0,
     0,
     0};
-CINTERFACE_PROXY_VTABLE(8) _IScannerProxyVtbl = 
+CINTERFACE_PROXY_VTABLE(9) _IScannerProxyVtbl = 
 {
     &IScanner_ProxyInfo,
     &IID_IScanner,
@@ -200,7 +273,8 @@ CINTERFACE_PROXY_VTABLE(8) _IScannerProxyVtbl =
     0 /* IDispatch::GetTypeInfo */ ,
     0 /* IDispatch::GetIDsOfNames */ ,
     0 /* IDispatch_Invoke_Proxy */ ,
-    (void *) (INT_PTR) -1 /* IScanner::Scan */
+    (void *) (INT_PTR) -1 /* IScanner::Scan */ ,
+    (void *) (INT_PTR) -1 /* IScanner::ScanPath */
 };
 
 
@@ -210,6 +284,7 @@ static const PRPC_STUB_FUNCTION IScanner_table[] =
     STUB_FORWARDING_FUNCTION,
     STUB_FORWARDING_FUNCTION,
     STUB_FORWARDING_FUNCTION,
+    NdrStubCall2,
     NdrStubCall2
 };
 
@@ -217,7 +292,7 @@ CInterfaceStubVtbl _IScannerStubVtbl =
 {
     &IID_IScanner,
     &IScanner_ServerInfo,
-    8,
+    9,
     &IScanner_table[-3],
     CStdStubBuffer_DELEGATING_METHODS
 };
@@ -238,7 +313,7 @@ static const MIDL_STUB_DESC Object_StubDesc =
     0,
     0x800025b, /* MIDL Version 8.0.603 */
     0,
-    0,
+    UserMarshalRoutines,
     0,  /* notify & notify_flag routine table */
     0x1, /* MIDL flag */
     0, /* cs routines */

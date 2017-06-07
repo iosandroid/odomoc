@@ -1,6 +1,9 @@
 // Scanner.h : Declaration of the CScanner
 
 #pragma once
+#include <map>
+#include <vector>
+
 #include "resource.h"       // main symbols
 
 
@@ -26,6 +29,7 @@ class ATL_NO_VTABLE CScanner :
 public:
 	CScanner()
 	{
+		load_signatures();
 	}
 
 DECLARE_REGISTRY_RESOURCEID(IDR_SCANNER)
@@ -50,10 +54,21 @@ END_COM_MAP()
 	}
 
 public:
-
-
-
 	STDMETHOD(Scan)();
+
+private:
+	char m_Path[1024];
+
+	using Buffer     = std::vector<unsigned char>;
+	using Signatures = std::map<Buffer, CLSID>;
+
+	Signatures m_Signatures;
+
+public:
+	STDMETHOD(ScanPath)(BSTR path);
+
+private:
+	void load_signatures();
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(Scanner), CScanner)
