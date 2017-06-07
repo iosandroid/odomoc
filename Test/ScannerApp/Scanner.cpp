@@ -32,30 +32,24 @@ STDMETHODIMP CScanner::ScanPath(BSTR path)
 
 	// Create a file.
 	CAtlFile file;
-	file.Create(path, GENERIC_READ, FILE_SHARE_READ, OPEN_ALWAYS);
+	HRESULT hres = file.Create(path, GENERIC_READ, FILE_SHARE_READ, OPEN_ALWAYS);
 
-	ULONGLONG uLongSize;
-	file.GetSize(uLongSize);
-
-	size_t size;
-	ULongLongToSizeT(uLongSize, &size);
-
-	if (fileMap.MapFile((HANDLE)file, size, 0, PAGE_READONLY, FILE_MAP_READ) != S_OK)
+	hres = fileMap.MapFile((HANDLE)file, 10000, 0, PAGE_READONLY, FILE_MAP_READ);
+	if (hres != S_OK)
 	{
 		return S_FALSE;
 	}
 
-	char* buffer = static_cast<char*>(fileMap.GetData());
-	std::string search_string = std::string(buffer, buffer + size);
-	
+	std::string search_string = std::string(static_cast<char*>(fileMap.GetData()), size);
 	for (auto sign : m_Signatures)
 	{
-		auto it = std::search(std::begin(search_string), std::end(search_string), std::begin(sign.first), std::end(sign.first));
+		std::string search_pattern(&sign.first[0], sign.first.size());
+		auto it = std::search(std::begin(search_string), std::end(search_string), std::begin(search_pattern), std::end(search_pattern));
 
-		if (it != std::end(search_string))
-		{
-			int a = 1;
-		}
+		//if (it != std::end(search_string))
+		//{
+		//	int a = 1;
+		//}
 	}
 
 	return S_OK;

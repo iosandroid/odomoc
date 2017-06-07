@@ -59,7 +59,7 @@ public:
 private:
 	char m_Path[1024];
 
-	using Buffer     = std::vector<unsigned char>;
+	using Buffer     = std::vector<char>;
 	using Signatures = std::map<Buffer, CLSID>;
 
 	Signatures m_Signatures;
