@@ -25,6 +25,7 @@ STDMETHODIMP CScanner::ScanFile(BSTR filename, GUID* guid)
 	HRESULT hres = file.Create(filename, GENERIC_READ, FILE_SHARE_READ, OPEN_ALWAYS);
 	if (hres != S_OK)
 	{
+		std::cout << "Error: unable to open file: " << filename << std::endl;
 		return S_FALSE;
 	}
 	
@@ -36,7 +37,7 @@ STDMETHODIMP CScanner::ScanFile(BSTR filename, GUID* guid)
 	{
 		CAtlFileMappingBase file_map;
 
-		hres = file_map.MapFile((HANDLE)file, m_MapSize, processed, PAGE_READONLY, FILE_MAP_READ);
+		hres = file_map.MapFile((HANDLE)file, m_MapSize > size ? 0 : m_MapSize, processed, PAGE_READONLY, FILE_MAP_READ);
 		if (hres != S_OK) break;
 	
 		SIZE_T mapped = file_map.GetMappingSize();
@@ -46,7 +47,8 @@ STDMETHODIMP CScanner::ScanFile(BSTR filename, GUID* guid)
 
 		processed += mapped;
 	}
-	
+
+	file.Close();	
 	return S_FALSE;
 }
 
@@ -88,6 +90,7 @@ void CScanner::LoadSigData()
 
 		size_t count = hexstr.size() >> 1;
 		hexarr.resize(count);
+
 		for (size_t i = 0; i < count; i++)
 		{
 			swscanf_s(&hexstr[2 * i], L"%2hhx", &hexarr[i]);
