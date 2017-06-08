@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Wed Jun 07 13:31:46 2017
+/* at Thu Jun 08 15:01:10 2017
  */
 /* Compiler settings for ScannerApp.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
@@ -88,10 +88,14 @@ EXTERN_C const IID IID_IScanner;
     IScanner : public IDispatch
     {
     public:
-        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE Scan( void) = 0;
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE ScanMemBlock( 
+            /* [in] */ CHAR *mem,
+            /* [in] */ LONG size,
+            /* [out] */ GUID *guid) = 0;
         
-        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE ScanPath( 
-            BSTR path) = 0;
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE ScanFile( 
+            /* [in] */ BSTR filename,
+            /* [out] */ GUID *guid) = 0;
         
     };
     
@@ -151,12 +155,16 @@ EXTERN_C const IID IID_IScanner;
             /* [annotation][out] */ 
             _Out_opt_  UINT *puArgErr);
         
-        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *Scan )( 
-            IScanner * This);
-        
-        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *ScanPath )( 
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *ScanMemBlock )( 
             IScanner * This,
-            BSTR path);
+            /* [in] */ CHAR *mem,
+            /* [in] */ LONG size,
+            /* [out] */ GUID *guid);
+        
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *ScanFile )( 
+            IScanner * This,
+            /* [in] */ BSTR filename,
+            /* [out] */ GUID *guid);
         
         END_INTERFACE
     } IScannerVtbl;
@@ -194,11 +202,11 @@ EXTERN_C const IID IID_IScanner;
     ( (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr) ) 
 
 
-#define IScanner_Scan(This)	\
-    ( (This)->lpVtbl -> Scan(This) ) 
+#define IScanner_ScanMemBlock(This,mem,size,guid)	\
+    ( (This)->lpVtbl -> ScanMemBlock(This,mem,size,guid) ) 
 
-#define IScanner_ScanPath(This,path)	\
-    ( (This)->lpVtbl -> ScanPath(This,path) ) 
+#define IScanner_ScanFile(This,filename,guid)	\
+    ( (This)->lpVtbl -> ScanFile(This,filename,guid) ) 
 
 #endif /* COBJMACROS */
 

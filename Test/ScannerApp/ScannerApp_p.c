@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Wed Jun 07 13:31:46 2017
+/* at Thu Jun 08 15:01:10 2017
  */
 /* Compiler settings for ScannerApp.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
@@ -49,8 +49,8 @@
 
 #include "ScannerApp_i.h"
 
-#define TYPE_FORMAT_STRING_SIZE   39                                
-#define PROC_FORMAT_STRING_SIZE   67                                
+#define TYPE_FORMAT_STRING_SIZE   65                                
+#define PROC_FORMAT_STRING_SIZE   91                                
 #define EXPR_FORMAT_STRING_SIZE   1                                 
 #define TRANSMIT_AS_TABLE_SIZE    0            
 #define WIRE_MARSHAL_TABLE_SIZE   1            
@@ -109,58 +109,84 @@ static const ScannerApp_MIDL_PROC_FORMAT_STRING ScannerApp__MIDL_ProcFormatStrin
         0,
         {
 
-	/* Procedure Scan */
+	/* Procedure ScanMemBlock */
 
 			0x33,		/* FC_AUTO_HANDLE */
 			0x6c,		/* Old Flags:  object, Oi2 */
 /*  2 */	NdrFcLong( 0x0 ),	/* 0 */
 /*  6 */	NdrFcShort( 0x7 ),	/* 7 */
-/*  8 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
-/* 10 */	NdrFcShort( 0x0 ),	/* 0 */
-/* 12 */	NdrFcShort( 0x8 ),	/* 8 */
+/*  8 */	NdrFcShort( 0x14 ),	/* x86 Stack size/offset = 20 */
+/* 10 */	NdrFcShort( 0x21 ),	/* 33 */
+/* 12 */	NdrFcShort( 0x4c ),	/* 76 */
 /* 14 */	0x44,		/* Oi2 Flags:  has return, has ext, */
-			0x1,		/* 1 */
+			0x4,		/* 4 */
 /* 16 */	0x8,		/* 8 */
 			0x1,		/* Ext Flags:  new corr desc, */
 /* 18 */	NdrFcShort( 0x0 ),	/* 0 */
 /* 20 */	NdrFcShort( 0x0 ),	/* 0 */
 /* 22 */	NdrFcShort( 0x0 ),	/* 0 */
 
-	/* Return value */
+	/* Parameter mem */
 
-/* 24 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 24 */	NdrFcShort( 0x148 ),	/* Flags:  in, base type, simple ref, */
 /* 26 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
-/* 28 */	0x8,		/* FC_LONG */
+/* 28 */	0x2,		/* FC_CHAR */
 			0x0,		/* 0 */
 
-	/* Procedure ScanPath */
+	/* Parameter size */
 
-/* 30 */	0x33,		/* FC_AUTO_HANDLE */
-			0x6c,		/* Old Flags:  object, Oi2 */
-/* 32 */	NdrFcLong( 0x0 ),	/* 0 */
-/* 36 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 30 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
+/* 32 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
+/* 34 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Parameter guid */
+
+/* 36 */	NdrFcShort( 0x4112 ),	/* Flags:  must free, out, simple ref, srv alloc size=16 */
 /* 38 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
-/* 40 */	NdrFcShort( 0x0 ),	/* 0 */
-/* 42 */	NdrFcShort( 0x8 ),	/* 8 */
-/* 44 */	0x46,		/* Oi2 Flags:  clt must size, has return, has ext, */
-			0x2,		/* 2 */
-/* 46 */	0x8,		/* 8 */
-			0x5,		/* Ext Flags:  new corr desc, srv corr check, */
-/* 48 */	NdrFcShort( 0x0 ),	/* 0 */
-/* 50 */	NdrFcShort( 0x1 ),	/* 1 */
-/* 52 */	NdrFcShort( 0x0 ),	/* 0 */
-
-	/* Parameter path */
-
-/* 54 */	NdrFcShort( 0x8b ),	/* Flags:  must size, must free, in, by val, */
-/* 56 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
-/* 58 */	NdrFcShort( 0x1c ),	/* Type Offset=28 */
+/* 40 */	NdrFcShort( 0x10 ),	/* Type Offset=16 */
 
 	/* Return value */
 
-/* 60 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
-/* 62 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
-/* 64 */	0x8,		/* FC_LONG */
+/* 42 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 44 */	NdrFcShort( 0x10 ),	/* x86 Stack size/offset = 16 */
+/* 46 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Procedure ScanFile */
+
+/* 48 */	0x33,		/* FC_AUTO_HANDLE */
+			0x6c,		/* Old Flags:  object, Oi2 */
+/* 50 */	NdrFcLong( 0x0 ),	/* 0 */
+/* 54 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 56 */	NdrFcShort( 0x10 ),	/* x86 Stack size/offset = 16 */
+/* 58 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 60 */	NdrFcShort( 0x4c ),	/* 76 */
+/* 62 */	0x46,		/* Oi2 Flags:  clt must size, has return, has ext, */
+			0x3,		/* 3 */
+/* 64 */	0x8,		/* 8 */
+			0x5,		/* Ext Flags:  new corr desc, srv corr check, */
+/* 66 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 68 */	NdrFcShort( 0x1 ),	/* 1 */
+/* 70 */	NdrFcShort( 0x0 ),	/* 0 */
+
+	/* Parameter filename */
+
+/* 72 */	NdrFcShort( 0x8b ),	/* Flags:  must size, must free, in, by val, */
+/* 74 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
+/* 76 */	NdrFcShort( 0x36 ),	/* Type Offset=54 */
+
+	/* Parameter guid */
+
+/* 78 */	NdrFcShort( 0x4112 ),	/* Flags:  must free, out, simple ref, srv alloc size=16 */
+/* 80 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
+/* 82 */	NdrFcShort( 0x10 ),	/* Type Offset=16 */
+
+	/* Return value */
+
+/* 84 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 86 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
+/* 88 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
 			0x0
@@ -173,33 +199,57 @@ static const ScannerApp_MIDL_TYPE_FORMAT_STRING ScannerApp__MIDL_TypeFormatStrin
         {
 			NdrFcShort( 0x0 ),	/* 0 */
 /*  2 */	
-			0x12, 0x0,	/* FC_UP */
-/*  4 */	NdrFcShort( 0xe ),	/* Offset= 14 (18) */
+			0x11, 0x8,	/* FC_RP [simple_pointer] */
+/*  4 */	0x2,		/* FC_CHAR */
+			0x5c,		/* FC_PAD */
 /*  6 */	
+			0x11, 0x4,	/* FC_RP [alloced_on_stack] */
+/*  8 */	NdrFcShort( 0x8 ),	/* Offset= 8 (16) */
+/* 10 */	
+			0x1d,		/* FC_SMFARRAY */
+			0x0,		/* 0 */
+/* 12 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 14 */	0x1,		/* FC_BYTE */
+			0x5b,		/* FC_END */
+/* 16 */	
+			0x15,		/* FC_STRUCT */
+			0x3,		/* 3 */
+/* 18 */	NdrFcShort( 0x10 ),	/* 16 */
+/* 20 */	0x8,		/* FC_LONG */
+			0x6,		/* FC_SHORT */
+/* 22 */	0x6,		/* FC_SHORT */
+			0x4c,		/* FC_EMBEDDED_COMPLEX */
+/* 24 */	0x0,		/* 0 */
+			NdrFcShort( 0xfff1 ),	/* Offset= -15 (10) */
+			0x5b,		/* FC_END */
+/* 28 */	
+			0x12, 0x0,	/* FC_UP */
+/* 30 */	NdrFcShort( 0xe ),	/* Offset= 14 (44) */
+/* 32 */	
 			0x1b,		/* FC_CARRAY */
 			0x1,		/* 1 */
-/*  8 */	NdrFcShort( 0x2 ),	/* 2 */
-/* 10 */	0x9,		/* Corr desc: FC_ULONG */
+/* 34 */	NdrFcShort( 0x2 ),	/* 2 */
+/* 36 */	0x9,		/* Corr desc: FC_ULONG */
 			0x0,		/*  */
-/* 12 */	NdrFcShort( 0xfffc ),	/* -4 */
-/* 14 */	NdrFcShort( 0x1 ),	/* Corr flags:  early, */
-/* 16 */	0x6,		/* FC_SHORT */
+/* 38 */	NdrFcShort( 0xfffc ),	/* -4 */
+/* 40 */	NdrFcShort( 0x1 ),	/* Corr flags:  early, */
+/* 42 */	0x6,		/* FC_SHORT */
 			0x5b,		/* FC_END */
-/* 18 */	
+/* 44 */	
 			0x17,		/* FC_CSTRUCT */
 			0x3,		/* 3 */
-/* 20 */	NdrFcShort( 0x8 ),	/* 8 */
-/* 22 */	NdrFcShort( 0xfff0 ),	/* Offset= -16 (6) */
-/* 24 */	0x8,		/* FC_LONG */
+/* 46 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 48 */	NdrFcShort( 0xfff0 ),	/* Offset= -16 (32) */
+/* 50 */	0x8,		/* FC_LONG */
 			0x8,		/* FC_LONG */
-/* 26 */	0x5c,		/* FC_PAD */
+/* 52 */	0x5c,		/* FC_PAD */
 			0x5b,		/* FC_END */
-/* 28 */	0xb4,		/* FC_USER_MARSHAL */
+/* 54 */	0xb4,		/* FC_USER_MARSHAL */
 			0x83,		/* 131 */
-/* 30 */	NdrFcShort( 0x0 ),	/* 0 */
-/* 32 */	NdrFcShort( 0x4 ),	/* 4 */
-/* 34 */	NdrFcShort( 0x0 ),	/* 0 */
-/* 36 */	NdrFcShort( 0xffde ),	/* Offset= -34 (2) */
+/* 56 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 58 */	NdrFcShort( 0x4 ),	/* 4 */
+/* 60 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 62 */	NdrFcShort( 0xffde ),	/* Offset= -34 (28) */
 
 			0x0
         }
@@ -238,7 +288,7 @@ static const unsigned short IScanner_FormatStringOffsetTable[] =
     (unsigned short) -1,
     (unsigned short) -1,
     0,
-    30
+    48
     };
 
 static const MIDL_STUBLESS_PROXY_INFO IScanner_ProxyInfo =
@@ -273,8 +323,8 @@ CINTERFACE_PROXY_VTABLE(9) _IScannerProxyVtbl =
     0 /* IDispatch::GetTypeInfo */ ,
     0 /* IDispatch::GetIDsOfNames */ ,
     0 /* IDispatch_Invoke_Proxy */ ,
-    (void *) (INT_PTR) -1 /* IScanner::Scan */ ,
-    (void *) (INT_PTR) -1 /* IScanner::ScanPath */
+    (void *) (INT_PTR) -1 /* IScanner::ScanMemBlock */ ,
+    (void *) (INT_PTR) -1 /* IScanner::ScanFile */
 };
 
 

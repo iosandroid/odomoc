@@ -10,52 +10,66 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <psapi.h>
 #include <iostream>
 #include <algorithm>
 
 // CScanner
 
-
-
-STDMETHODIMP CScanner::Scan()
+STDMETHODIMP CScanner::ScanFile(BSTR filename, GUID* guid)
 {
-	// TODO: Add your implementation code here
-
-	std::cout << "Scanner : start scan.\n";
-	return S_OK;
-}
-
-
-STDMETHODIMP CScanner::ScanPath(BSTR path)
-{
-	CAtlFileMappingBase fileMap;
-
+	ATLASSERT(guid);
+		
 	// Create a file.
 	CAtlFile file;
-	HRESULT hres = file.Create(path, GENERIC_READ, FILE_SHARE_READ, OPEN_ALWAYS);
-
-	hres = fileMap.MapFile((HANDLE)file, 10000, 0, PAGE_READONLY, FILE_MAP_READ);
+	HRESULT hres = file.Create(filename, GENERIC_READ, FILE_SHARE_READ, OPEN_ALWAYS);
 	if (hres != S_OK)
 	{
 		return S_FALSE;
 	}
+	
+	ULONGLONG size;
+	file.GetSize(size);
 
-	std::string search_string = std::string(static_cast<char*>(fileMap.GetData()), size);
-	for (auto sign : m_Signatures)
+	SIZE_T processed = 0;
+	while (processed < size)
 	{
-		std::string search_pattern(&sign.first[0], sign.first.size());
-		auto it = std::search(std::begin(search_string), std::end(search_string), std::begin(search_pattern), std::end(search_pattern));
+		CAtlFileMappingBase file_map;
 
-		//if (it != std::end(search_string))
-		//{
-		//	int a = 1;
-		//}
+		hres = file_map.MapFile((HANDLE)file, m_MapSize, processed, PAGE_READONLY, FILE_MAP_READ);
+		if (hres != S_OK) break;
+	
+		SIZE_T mapped = file_map.GetMappingSize();
+
+		hres = ScanMemBlock(static_cast<CHAR*>(file_map.GetData()), mapped, guid);
+		if (hres == S_OK) return S_OK;
+
+		processed += mapped;
 	}
-
-	return S_OK;
+	
+	return S_FALSE;
 }
 
-void CScanner::load_signatures()
+STDMETHODIMP CScanner::ScanMemBlock(CHAR* mem, LONG size, GUID* guid)
+{
+	ATLASSERT(guid);
+
+	for (auto it : m_SigData)
+	{
+		const char* pattern = it.first.data();
+		char* found = std::search(mem, mem + size, pattern, pattern + it.first.size());
+
+		if (found != (mem + size))
+		{
+			*guid = it.second;
+			return S_OK;
+		}
+	}
+
+	return S_FALSE;
+}
+
+void CScanner::LoadSigData()
 {
 	std::wifstream fs(L"signatures.dat");
 	std::wstring line;
@@ -66,20 +80,28 @@ void CScanner::load_signatures()
 
 		std::wstring hexstr = line.substr(0, dotpos);
 		std::wstring uidstr = line.substr(dotpos + 1, std::wstring::npos);
-		
+
 		GUID   guid;
-		Buffer buffer;
+		HEXARR hexarr;
 
 		CLSIDFromString(uidstr.c_str(), &guid);
 
 		size_t count = hexstr.size() >> 1;
-		buffer.resize(count);
+		hexarr.resize(count);
 		for (size_t i = 0; i < count; i++)
-		{			
-			swscanf_s(&hexstr[2*i], L"%2hhx", &buffer[i]);
+		{
+			swscanf_s(&hexstr[2 * i], L"%2hhx", &hexarr[i]);
 		}
 
-		m_Signatures.insert(std::make_pair(buffer, guid));
+		m_SigData.insert(std::make_pair(hexarr, guid));
 	}
+}
 
+
+void CScanner::LoadSysInfo()
+{
+	SYSTEM_INFO sys_info;
+	GetSystemInfo(&sys_info);	
+	
+	m_MapSize = sys_info.dwAllocationGranularity;
 }

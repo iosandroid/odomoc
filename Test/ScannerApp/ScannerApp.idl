@@ -15,8 +15,8 @@ import "ocidl.idl";
 	pointer_default(unique)
 ]
 interface IScanner : IDispatch{
-	[id(1), helpstring("Scan Method")] HRESULT Scan();
-	[id(2), helpstring("Method Scan Path")] HRESULT ScanPath(BSTR path);
+	[id(5), helpstring("Method ScanMemBlock()")] HRESULT ScanMemBlock([in] CHAR* mem, [in] LONG size, [out] GUID* guid);
+	[id(6), helpstring("Method ScanFile()")] HRESULT ScanFile([in] BSTR filename, [out] GUID* guid);
 };
 [
 	uuid(5AE5AC7F-8DB4-4BA6-B84A-888BABD8653F),

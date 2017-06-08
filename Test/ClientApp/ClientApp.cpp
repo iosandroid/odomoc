@@ -8,9 +8,10 @@
 int main()
 {
 	::CoInitialize(NULL);
-
 	COM::IScannerPtr scanner(__uuidof(COM::Scanner));
-	scanner->ScanPath(L"d:\\en.iso");
+
+	GUID guid;
+	scanner->ScanFile(L"d:\\en.iso", &guid);
 	
 	::CoUninitialize();
     return 0;
